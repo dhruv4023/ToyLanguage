@@ -1,0 +1,6 @@
+*.exe
+*.c
+*.h
+Reference/*.exe
+Reference/*.c
+Reference/*.h

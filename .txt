@@ -1,0 +1,10 @@
+flex parser.l
+gcc lex.yy.c 
+./a.exe
+
+
+
+bison -dy yc.y
+flex lx.l
+gcc lex.yy.c y.tab.c -o yacc.exe
+./yacc.exe
