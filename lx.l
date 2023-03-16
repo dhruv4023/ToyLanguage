@@ -6,7 +6,7 @@
 Digit [0-9]
 Int {Digit}+
 alpha [a-zA-Z]
-String {alpha}+
+String ({alpha}+{Digit}*)+
 ws [\t ]
 %%
 "add"    { return ADD; }
@@ -17,12 +17,13 @@ ws [\t ]
 "isPrime"    { return PRIME;}
 "sumofdigit"    { return SOD;}
 "exp"    { return EXP;}
-"isPal"    { return PALINDROME;}
-[a-zA-Z]+    {yylval = strdup(yytext); return STR; }
+"pal"    { return PALINDROME;}
+"sout"    { return SOUT;}
+{String}    {yylval = strdup(yytext); return STR; }
 {Int}+    { yylval = atoi(yytext); return NUMBER; }
 {ws}    
 "\n" 
-.           { fprintf(stderr, "Error: invalid input\n"); }
+.           { fprintf(stderr, "Error: invalid input\n");return 0; }
 %%
 
 

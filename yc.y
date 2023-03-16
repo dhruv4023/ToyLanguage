@@ -6,7 +6,7 @@
 int flag=0;
 %}
 
-%token NUMBER STR EXP PALINDROME ADD SUB MUL DIV REVERSE PRIME SOD
+%token SOUT NUMBER STR EXP PALINDROME ADD SUB MUL DIV REVERSE PRIME SOD
 
 %left '+' '-'
 
@@ -20,7 +20,13 @@ int flag=0;
 
 input:   { printf(">> ");}
             |  input line ask
-line:   NUMBER NUMBER ADD   { printf("%d\n", $1 + $2); }
+line: NUMBER SOUT { printf("%d\n",$1);}
+    | STR SOUT  {  printf("%s\n",$1);
+                    // char str[strlen($1)];
+                    // strcpy(str,$1); 
+                    // substr(str,1,strlen($1)-2);
+                }
+    |  NUMBER NUMBER ADD   { printf("%d\n", $1 + $2); }
     |  NUMBER NUMBER SUB   { printf("%d\n", $1 - $2); }
     |  NUMBER NUMBER MUL   { printf("%d\n", $1 * $2); }
     |  NUMBER NUMBER DIV   { printf("%lf\n", $1 / $2); }
@@ -65,15 +71,15 @@ int reverse(int num) {
 }
 
 
-int isPalindrome(char str[]) {
-   int i, len, flag = 0;
+void isPalindrome(char str[]) {
+   int i, len, fg = 0;
    len = strlen(str);
    for(i=0;i<len;i++) 
       if(str[i] != str[len-i-1]) {
-         flag = 1;
+         fg = 1;
          break;
       }
-   if (flag)
+   if (fg)
     printf("not palindrom\n");
    else 
     printf("is palindrom\n");
@@ -112,4 +118,11 @@ void sum_of_digits(int num) {
         num /= 10;
     }
     printf("%d\n",sum );
+}
+
+void substr(char *string, int start, int length) {
+    char sub[length + 1];
+    strncpy(sub, string + start, length);
+    sub[length] = '\0';
+    printf("%s\n", sub);
 }

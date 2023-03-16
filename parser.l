@@ -7,10 +7,10 @@
 Digit [0-9]
 Int {Digit}+
 alpha [a-zA-Z]
-String {alpha}+
+String ["\""]({alpha}+{Digit}*)+["\""]
 ws [\t ]
 %%
-{String}+ { printf("STR : %s",yytext); }
+{String} { printf("STR : %s",yytext); }
 {Int}+      {printf("%d",atoi(yytext)); }
 {ws}    
 "\n" 
