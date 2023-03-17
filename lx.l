@@ -6,7 +6,7 @@
 Digit [0-9]
 Int {Digit}+
 alpha [a-zA-Z]
-String ({alpha}+{Digit}*)+
+String ["\""]({alpha}+{Digit}*)+["\""]
 ws [\t ]
 %%
 "add"    { return ADD; }

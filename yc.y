@@ -21,10 +21,11 @@ int flag=0;
 input:   { printf(">> ");}
             |  input line ask
 line: NUMBER SOUT { printf("%d\n",$1);}
-    | STR SOUT  {  printf("%s\n",$1);
-                    // char str[strlen($1)];
-                    // strcpy(str,$1); 
-                    // substr(str,1,strlen($1)-2);
+    | STR SOUT  {  
+                    // printf("%s\n",$1);
+                    char str[strlen($1)];
+                    strcpy(str,$1); 
+                    substr(str,1,strlen($1)-2);
                 }
     |  NUMBER NUMBER ADD   { printf("%d\n", $1 + $2); }
     |  NUMBER NUMBER SUB   { printf("%d\n", $1 - $2); }
